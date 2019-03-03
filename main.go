@@ -18,6 +18,7 @@ func main() {
 	app.Name = "gotping"
 	app.Usage = "TCP connect/close ping"
 	app.ArgsUsage = "host port"
+	app.Version = "0.1.0"
 
 	cli.AppHelpTemplate = `NAME:
    {{.Name}} - {{.Usage}}
