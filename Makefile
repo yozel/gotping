@@ -22,6 +22,7 @@ build-cross: test build-linux build-darwin build-windows
 build-linux:
 	$(call cross_build_func,linux,amd64)
 	$(call cross_build_func,linux,386)
+	$(call cross_build_func,linux,arm)
 
 build-darwin:
 	$(call cross_build_func,darwin,amd64)
