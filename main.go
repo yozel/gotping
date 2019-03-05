@@ -52,9 +52,9 @@ VERSION:
 		}
 
 		timeoutSeconds := c.Float64("timeout")
-		timeout := time.Duration(timeoutSeconds*1000) * time.Millisecond
+		timeout := time.Duration(timeoutSeconds) * time.Second
 		sleepSeconds := c.Float64("sleep")
-		sleep := time.Duration(sleepSeconds*1000) * time.Millisecond
+		sleep := time.Duration(sleepSeconds) * time.Second
 		// parallel := c.Int("parallel")
 		count := c.Int("count")
 		countStr := "infinite"
@@ -81,10 +81,10 @@ VERSION:
 		}()
 
 		for i := 0; i < count; i += incrBy {
-			connResult, closeResult := tping(host, port, time.Duration(timeout)*time.Millisecond)
+			connResult, closeResult := tping(host, port, timeout)
 			tpingStatList.PushBack(tpingStat{connResult, closeResult})
 			fmt.Printf("%s\n", tpingString(connResult, closeResult))
-			if i != count-1 {
+			if incrBy == 0 || i != count-1 {
 				time.Sleep(sleep)
 			}
 		}
